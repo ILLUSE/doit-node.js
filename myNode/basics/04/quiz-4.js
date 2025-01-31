@@ -4,3 +4,23 @@
 
 // '/home'으로 접속하면 'Welcome home'을 출력하고
 // '/about'으로 접속하면 'About us'를 출력하는 코드를 추가해보세요.
+const http = require("http");
+
+const server = http.createServer((req,res) => {
+    //요청 메서드와 URL 가져오기
+    const {method,url} = req;
+    res.setHeader("Content-Type","text/plain");
+
+    //URl에 따라 응답을 다르게 처리
+    if(method == "GET" && url === "/home"){
+        res.end("Welcome home");
+    } else if(method === "GET" && url === "/about"){
+        res.end("About us");
+    } else {
+        res.end("Hello,World!");
+    }
+    });
+
+    server.listen(8080, () => {
+        console.log("8080번 포트에서 서버 실행 중");
+    });
