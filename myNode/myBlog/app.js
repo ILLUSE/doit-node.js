@@ -17,8 +17,13 @@ app.set("views","./views");
 //정적 파일
 app.use(express.static("public"));
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true}));
+
 // 루트(/)경로로 접속하면 routes\main.js의 라우트 사용
 app.use("/",require("./routes/main"));
+app.use("/",require("./routes/admin"));
+
 
 app.listen(port,() => {
     console.log(`App listening on port ${port}`);
