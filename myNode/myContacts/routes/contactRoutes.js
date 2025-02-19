@@ -1,13 +1,6 @@
-//app-4.js와 동일 , 더 간결한 표현!
+
 const express = require("express");
-const app = express();
 const router = express.Router();
-
-const port = 3000;
-
-app.get((req, res) => {
-  res.status(200).send("Hello Node!");
-});
 
 router
   .route("/contacts")
@@ -35,8 +28,5 @@ router
     res.status(200).send(`Delete Contact for ID: ${req.params.id}`);
   });
 
-app.use(router);
-
-app.listen(port, () => {
-  console.log(`${port}번 포트에서 서버 실행 중`);
-});
+  //현재 파일에서 router 객체를 외부에서 사용할 수 있도록 내보내는 역할
+  module.exports = router;
